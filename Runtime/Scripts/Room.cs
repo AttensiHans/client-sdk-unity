@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using LiveKit.Internal;
 using LiveKit.Proto;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using LiveKit.Internal.FFIClients.Requests;
 using UnityEngine;
 
@@ -170,7 +172,7 @@ namespace LiveKit
             return new ConnectInstruction(res.Connect.AsyncId, this, options);
         }
 
-        public void Disconnect()
+        public async Task Disconnect()
         {
             if (this.RoomHandle == null)
                 return;
@@ -178,6 +180,10 @@ namespace LiveKit
             Utils.Debug($"Disconnect.... {RoomHandle}");
             FfiResponse resp = response;
             Utils.Debug($"Disconnect response.... {resp}");
+
+            await UniTask.WaitForSeconds(2);
+            
+            OnDisconnect();
         }
 
         /// <summary>
