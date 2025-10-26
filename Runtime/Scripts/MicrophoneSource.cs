@@ -60,7 +60,7 @@ namespace LiveKit
 
         private IEnumerator StartMicrophone()
         {
-             var clip = Microphone.Start(
+             /*var clip = Microphone.Start(
                 _deviceName,
                 loop: true,
                 lengthSec: 1,
@@ -80,7 +80,9 @@ namespace LiveKit
 
             var waitUntilReady = new WaitUntil(() => Microphone.GetPosition(_deviceName) > 0);
             yield return waitUntilReady;
-            source.Play();
+            source.Play();*/
+             
+            yield break;
         }
 
         /// <summary>
@@ -96,7 +98,7 @@ namespace LiveKit
 
         private IEnumerator StopMicrophone()
         {
-            if (Microphone.IsRecording(_deviceName))
+            /*if (Microphone.IsRecording(_deviceName))
                 Microphone.End(_deviceName);
 
             var probe = _sourceObject.GetComponent<AudioProbe>();
@@ -105,7 +107,9 @@ namespace LiveKit
 
             var source = _sourceObject.GetComponent<AudioSource>();
             UnityEngine.Object.Destroy(source);
-            yield return null;
+            yield return null;*/
+            
+            yield break;
         }
 
         private void OnAudioRead(float[] data, int channels, int sampleRate)
